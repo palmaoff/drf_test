@@ -15,10 +15,10 @@ Migrate database
 cd backend
 py manage.py makemigrations api
 py manage.py migrate
+```
 Create superuser
 ```
 py manage.py createsuperuser
-```
 ```
 Run dev server
 ```
