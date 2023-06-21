@@ -15,6 +15,7 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     transaction_id = serializers.PrimaryKeyRelatedField(source="id", read_only=True)
     username = serializers.CharField(source="user.username", read_only=True)
     user_id = serializers.IntegerField(source="user.id")
+    date = serializers.CharField(read_only=True)
     class Meta:
         model = Transaction
         fields = ['transaction_id', 'user_id', 'username', 'date', 'value']
