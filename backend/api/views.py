@@ -32,9 +32,9 @@ class TransactionViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data
         user = get_object_or_404(User, pk=data['user_id'])
-        new_ransaction = Transaction.objects.create(user=user, value=data['value'])
-        serializer = TransactionSerializer(new_ransaction)
+        new_transaction = Transaction.objects.create(user=user, value=data['value'])
         update_balance(user)
+        serializer = TransactionSerializer(new_transaction)
         return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
@@ -44,8 +44,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
         transaction.value = data['value']
         transaction.user = user
         transaction.save()
-        serializer = TransactionSerializer(transaction)
         update_balance(user)
+        serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
 
 
